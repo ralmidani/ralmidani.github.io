@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Flickr Search</title>
+    <style>
+      body {
+        background-color: #eee;
+      }
+
+      input[name='search'], button.go {
+        padding: 20px;
+      }
+
+      button.go {
+        margin-left: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flickr Search</h1>
+
+    <div>
+      <input type='text' name='search'>
+      <button class='go'>Go</button>
+    </div>
+
+    <div class='thumbs'>
+    </div>
+    
+    <script>
+      const key = '4e258a4396bf5ba0448b2e2fe574034e'
+      const flickrAPI =
+        `https://api.flickr.com/services/rest/?api_key=${key}&format=json`
+      ;
+
+      const photosSearchMethod = 'flickr.photos.search';
+
+      document
+        .querySelector('button.go')
+        .addEventListener('click', async () => {
+          const text = document.querySelector("input[name='search']").value;
+
+          fetch(`flickrAPI&method=${photosSearchMethod}&text=${text}`)
+            .then(response => response.json())
+            .then(renderPhotosArray)
+            .catch(() => alert(
+              `There was a problem communicating with the Flickr API.
+               Please try again later.`
+            ));
+        });
+
+      function renderPhotosArray(photos) {
+        console.log(photos);
+      }
+
+      function renderSinglePhoto(photo) {
+
+      }
+    </script>
+  </body>
+</html>
