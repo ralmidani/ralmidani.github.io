@@ -40,7 +40,7 @@
           const text = document.querySelector("input[name='search']").value;
 
           fetch(
-            `flickrAPI&method=${photosSearchMethod}&text=${text}`,
+            `${flickrAPI}&method=${photosSearchMethod}&text=${text}`,
             {
               mode: "cors",
               headers: {
