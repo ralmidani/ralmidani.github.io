@@ -39,12 +39,19 @@
         .addEventListener('click', async () => {
           const text = document.querySelector("input[name='search']").value;
 
-          fetch(`flickrAPI&method=${photosSearchMethod}&text=${text}`)
+          fetch(
+            `flickrAPI&method=${photosSearchMethod}&text=${text}`,
+            {
+              mode: "cors",
+              headers: {
+                'Access-Control-Allow-Origin': 'https://api.flickr.com'
+              }
+            }
+          )
             .then(response => response.json())
             .then(renderPhotosArray)
             .catch(() => alert(
-              `There was a problem communicating with the Flickr API.
-               Please try again later.`
+              'There was a problem communicating with the Flickr API. :( Please try again later.'
             ));
         });
 
